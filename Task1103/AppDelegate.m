@@ -7,16 +7,50 @@
 //
 
 #import "AppDelegate.h"
+#import <Parse/Parse.h>
 
 @implementation AppDelegate
+@synthesize viewObj;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+//    NSString *pathsToReources = [[NSBundle mainBundle] resourcePath];
+//    NSString *yourOriginalDatabasePath = [pathsToReources stringByAppendingPathComponent:@"Task1103.sqlite"];
+//    
+//    NSArray *pathsToDocuments = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    
+//    NSString *documentsDirectory = [pathsToDocuments objectAtIndex: 0];
+//    
+//    
+//    NSString *dbPath = [documentsDirectory stringByAppendingPathComponent:@"Task1103.sqlite"];
+//    
+//   
+//    if (![[NSFileManager defaultManager] isReadableFileAtPath: dbPath]) {
+//        
+//        if ([[NSFileManager defaultManager] copyItemAtPath: yourOriginalDatabasePath toPath: dbPath error: NULL] != YES)
+//            
+//            NSAssert2(0, @"Fail to copy database from %@ to %@", yourOriginalDatabasePath, dbPath);
+//        
+//    }
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    self.viewObj = [[ViewController alloc]initWithNibName:@"ViewController" bundle:nil];
+    self.window.rootViewController = self.viewObj;
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    [Parse setApplicationId:@"em99Mmp02T9NRyfbAgWQd2YvQob9uNcC9ykKYo7A"
+                  clientKey:@"sPullVnmae1IyhURaVYOilui1nf4vNoTdFiCLjvr"];
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+//    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
+//    testObject[@"foo"] = @"bar";
+//    [testObject saveInBackground];
+//    
     return YES;
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
